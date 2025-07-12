@@ -25,7 +25,7 @@ public class PetTrackingController {
 
     /**
      * This endpoint inserts the record for a pet for the first time
-     * @param dto as user input
+     * @param dto as info from tracker
      * @return the dto
      */
     @PostMapping
@@ -45,7 +45,14 @@ public class PetTrackingController {
         return new ResponseEntity<>(new PetDto(), HttpStatus.OK);
     }
 
-    public ResponseEntity<PetDto> updatePetInfo(@Valid @RequestBody PetDto dto) {
+    /**
+     * The tracker for cat also identifies that it's lost (maybe due to suspicious movement)
+     * @param dto as info from tracker
+     * @return ResponseEntity
+     */
+    @PutMapping
+    public ResponseEntity<?> updatePetInfo(@Valid @RequestBody PetDto dto) {
+        //TODO: implement the method
         return ResponseEntity.noContent().build();
     }
 }

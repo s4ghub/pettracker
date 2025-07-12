@@ -13,7 +13,7 @@ public class Pet {
     //id of the cat or the dog
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "ownerId")
     private Integer ownerId;
