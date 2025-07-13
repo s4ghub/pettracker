@@ -12,8 +12,8 @@ import lombok.Data;
 @Entity
 @Table(name = "pet")
 public class Pet {
-    public enum PetType {CAT, DOG};
-    public enum TrackerType {SMALL, MEDIUM, BIG};
+    public enum PetType {CAT, DOG}
+    public enum TrackerType {SMALL, MEDIUM, BIG}
 
     //id of the tracker in the cat or the dog
     //TODO: Exposed id in the db. Should be modified later

@@ -1,7 +1,7 @@
 package com.example.pettracker.pettracker.dtos;
 
 import com.example.pettracker.pettracker.domainmodels.Pet;
-import lombok.Data;
+import com.example.pettracker.pettracker.exceptionhandling.BaduserInputException;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +22,20 @@ public class DtoEntityMapper {
         entity.setLostTracker(dto.getLostTracker());
 
         return entity;
+    }
+
+    public void updateEntity(UpdateDto dto, Pet entity) {
+        entity.setInZone(dto.getInZone());
+        if(entity.getPetType() == Pet.PetType.CAT) {
+            if(dto.getLostTracker() == null) {
+                throw new BaduserInputException("value of lostTracker may not be null for Cat");
+            }
+        } else {
+            if(dto.getLostTracker() != null) {
+                throw new BaduserInputException("value of lostTracker must be null for dog");
+            }
+        }
+        entity.setLostTracker(dto.getLostTracker());
     }
 
     public PetDto entityToDto(@NonNull Pet entity) {

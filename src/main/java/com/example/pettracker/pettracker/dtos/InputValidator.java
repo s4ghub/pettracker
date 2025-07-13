@@ -31,12 +31,12 @@ public class InputValidator {
 
         //For Cat the lostTracker should be non-null
         if(dto.getLostTracker() == null && petType == Pet.PetType.CAT) {
-            throw new BaduserInputException("For Cat, it should be true or false");
+            throw new BaduserInputException("For Cat, lostTracker should be true or false");
         }
 
         //For Dog the lostTracker should be null
         if(dto.getLostTracker() != null && petType == Pet.PetType.DOG) {
-            throw new BaduserInputException("For Dog, it should be null");
+            throw new BaduserInputException("For Dog, lostTracker should be null");
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.pettracker.pettracker.controllers;
 import com.example.pettracker.pettracker.dtos.IOutOfZoneCount;
 import com.example.pettracker.pettracker.dtos.InputValidator;
 import com.example.pettracker.pettracker.dtos.PetDto;
+import com.example.pettracker.pettracker.dtos.UpdateDto;
 import com.example.pettracker.pettracker.services.PetTrackingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +60,8 @@ public class PetTrackingController {
      * The tracker for cat also identifies whether it's lost (maybe due to suspicious movement)
      */
     @PutMapping
-    public ResponseEntity<?> updatePetInfo(@Valid @RequestBody PetDto dto) {
-        inputValidator.validate(dto);
+    public ResponseEntity<?> updatePetInfo(@Valid @RequestBody UpdateDto dto) {
+        //inputValidator.validate(dto);
         trackingService.modifyPetInfo(dto);
         return ResponseEntity.noContent().build();
     }

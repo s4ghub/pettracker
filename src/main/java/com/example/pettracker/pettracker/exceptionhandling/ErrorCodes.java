@@ -14,6 +14,6 @@ public class ErrorCodes {
     public static final String ERRORCODE3 = "error3";
     public static final String ERRORCODE3MESSAGE = "Some unexpected error happened";
 
-    public static final String ERRORCODE7 = "error7";
-    public static final String ERRORCODE7MESSAGE = "Please check your input";
+    public static final String ERRORCODE4 = "error4";
+    public static final String ERRORCODE4MESSAGE = "Please check your input";
 }

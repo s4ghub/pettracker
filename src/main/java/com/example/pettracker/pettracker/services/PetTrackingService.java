@@ -2,6 +2,7 @@ package com.example.pettracker.pettracker.services;
 
 import com.example.pettracker.pettracker.dtos.IOutOfZoneCount;
 import com.example.pettracker.pettracker.dtos.PetDto;
+import com.example.pettracker.pettracker.dtos.UpdateDto;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface PetTrackingService {
 
     PetDto fetchPetInfo(long id);
 
-    void modifyPetInfo(PetDto dto);
+    void modifyPetInfo(UpdateDto dto);
 
     List<PetDto> getAllPets();
 

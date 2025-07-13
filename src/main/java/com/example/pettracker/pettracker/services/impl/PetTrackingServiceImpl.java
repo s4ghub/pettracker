@@ -4,6 +4,7 @@ import com.example.pettracker.pettracker.domainmodels.Pet;
 import com.example.pettracker.pettracker.dtos.DtoEntityMapper;
 import com.example.pettracker.pettracker.dtos.IOutOfZoneCount;
 import com.example.pettracker.pettracker.dtos.PetDto;
+import com.example.pettracker.pettracker.dtos.UpdateDto;
 import com.example.pettracker.pettracker.exceptionhandling.BaduserInputException;
 import com.example.pettracker.pettracker.repositories.PetTrackingRepository;
 import com.example.pettracker.pettracker.services.PetTrackingService;
@@ -49,12 +50,12 @@ public class PetTrackingServiceImpl implements PetTrackingService {
     //TODO: Transactional may not be strictly necessary here
     @Transactional(value = "petTrackingSqlTransactionManager")
     @Override
-    public void modifyPetInfo(PetDto dto) {
+    public void modifyPetInfo(UpdateDto dto) {
         Optional<Pet> found = repository.findById(dto.getPetId());
         if(!found.isPresent()) {
             throw new BaduserInputException("Pet id is not valid");
         }
-        mapper.dtoToEntity(dto, found.get());
+        mapper.updateEntity(dto, found.get());
     }
 
     //TODO: Transactional may not be strictly necessary here
