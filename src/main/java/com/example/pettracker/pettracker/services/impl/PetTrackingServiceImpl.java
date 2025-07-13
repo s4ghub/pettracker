@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-//TODO: implement methods
 @Service
 public class PetTrackingServiceImpl implements PetTrackingService {
 
@@ -57,6 +56,15 @@ public class PetTrackingServiceImpl implements PetTrackingService {
         }
         mapper.dtoToEntity(dto, found.get());
     }
+
+    //TODO: Transactional may not be strictly necessary here
+    @Transactional(value = "petTrackingSqlTransactionManager", readOnly = true)
+    @Override
+    public List<PetDto> getAllPets() {
+        List<Pet> allPetsInfo = repository.findAll();
+        return mapper.entitiesToDtos(allPetsInfo);
+    }
+
 
     //TODO: Transactional may not be strictly necessary here
     @Transactional(value = "petTrackingSqlTransactionManager", readOnly = true)

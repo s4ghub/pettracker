@@ -1,10 +1,16 @@
 package com.example.pettracker.pettracker.controllers;
 
+import com.example.pettracker.pettracker.dtos.IOutOfZoneCount;
+import com.example.pettracker.pettracker.dtos.InputValidator;
 import com.example.pettracker.pettracker.dtos.PetDto;
+import com.example.pettracker.pettracker.services.PetTrackingService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * As per requirement the application should receive data from these trackers.
@@ -22,37 +28,56 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/petinfos")
 public class PetTrackingController {
+    private final PetTrackingService trackingService;
+    private final InputValidator inputValidator;
+
+    @Autowired
+    public PetTrackingController(PetTrackingService trackingService, InputValidator inputValidator) {
+        this.trackingService = trackingService;
+        this.inputValidator = inputValidator;
+    }
 
     /**
      * This endpoint inserts the record for a pet for the first time
-     * @param dto as info from tracker
-     * @return the dto
      */
     @PostMapping
     public ResponseEntity<PetDto> insertPetInfo(@Valid @RequestBody PetDto dto) {
-        //TODO: implement the method
-        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+        inputValidator.validate(dto);
+        return new ResponseEntity<>(trackingService.createPetInfo(dto), HttpStatus.CREATED);
     }
 
     /**
      * This endpoint gets a single record
-     * @param petId as id
-     * @return dto
      */
     @GetMapping("/{id}")
     public ResponseEntity<PetDto> getPetInfo(@PathVariable("id") Integer petId) {
-        //TODO: implement the method
-        return new ResponseEntity<>(new PetDto(), HttpStatus.OK);
+        return new ResponseEntity<>(trackingService.fetchPetInfo(petId), HttpStatus.OK);
     }
 
     /**
-     * The tracker for cat also identifies that it's lost (maybe due to suspicious movement)
-     * @param dto as info from tracker
-     * @return ResponseEntity
+     * Updates a single record
+     * The tracker for cat also identifies whether it's lost (maybe due to suspicious movement)
      */
     @PutMapping
     public ResponseEntity<?> updatePetInfo(@Valid @RequestBody PetDto dto) {
-        //TODO: implement the method
+        inputValidator.validate(dto);
+        trackingService.modifyPetInfo(dto);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * get all info: Did not use pagination for simplicity
+     */
+    @GetMapping
+    public ResponseEntity<List<PetDto>> allComponents() {
+        return new ResponseEntity<>(trackingService.getAllPets(), HttpStatus.OK);
+    }
+
+    /**
+     * Returns how many are out of power saving zone
+     */
+    @GetMapping("/outofpowersavingzone")
+    public ResponseEntity<List<IOutOfZoneCount>> outOfZone() {
+        return new ResponseEntity<>(trackingService.petsOutOfPowerSavingZone(), HttpStatus.OK);
     }
 }

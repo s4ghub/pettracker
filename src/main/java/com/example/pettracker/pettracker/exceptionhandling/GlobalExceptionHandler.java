@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put(ErrorCodes.ERRORCODE2, ErrorCodes.ERRORCODE2MESSAGE);
-        ErrorResponse response = new ErrorResponse(ErrorCodes.ERRORCODE2, ex.getMostSpecificCause().getMessage(), errors);
+        ErrorResponse response = new ErrorResponse(ErrorCodes.ERRORCODE2, null, errors);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 

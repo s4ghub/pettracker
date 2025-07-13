@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 //@Data
 public class DtoEntityMapper {
@@ -31,5 +34,13 @@ public class DtoEntityMapper {
         dto.setLostTracker(entity.getLostTracker());
 
         return dto;
+    }
+
+    public List<PetDto> entitiesToDtos(@NonNull List<Pet> entities) {
+        List<PetDto> dtos = new ArrayList<>();
+        for(Pet entity:entities) {
+            dtos.add(entityToDto(entity));
+        }
+        return dtos;
     }
 }

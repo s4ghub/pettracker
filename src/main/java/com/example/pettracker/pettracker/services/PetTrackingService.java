@@ -14,5 +14,7 @@ public interface PetTrackingService {
 
     void modifyPetInfo(PetDto dto);
 
+    List<PetDto> getAllPets();
+
     List<IOutOfZoneCount> petsOutOfPowerSavingZone();
 }

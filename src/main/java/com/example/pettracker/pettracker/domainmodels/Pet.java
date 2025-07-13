@@ -18,7 +18,7 @@ public class Pet {
     //id of the tracker in the cat or the dog
     //TODO: Exposed id in the db. Should be modified later
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "ownerId")
