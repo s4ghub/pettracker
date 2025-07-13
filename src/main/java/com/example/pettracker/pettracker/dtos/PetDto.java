@@ -10,7 +10,7 @@ import lombok.Data;
 public class PetDto {
 
     @Nullable //Null during insertion
-    private Integer petId;
+    private Long petId;
 
     @NotNull(message = "ownerId may not be NULL")
     private Integer ownerId;

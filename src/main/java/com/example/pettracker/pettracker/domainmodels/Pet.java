@@ -16,8 +16,9 @@ public class Pet {
     public enum TrackerType {SMALL, MEDIUM, BIG};
 
     //id of the tracker in the cat or the dog
+    //TODO: Exposed id in the db. Should be modified later
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "ownerId")
