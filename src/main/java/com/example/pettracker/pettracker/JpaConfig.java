@@ -15,7 +15,11 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
+//TODO: This file may not be needed as we may not use @Transactional
 
+/**
+ * This file may not be needed
+ */
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "petTrackingEntityManager",
@@ -45,7 +49,7 @@ public class JpaConfig {
     }
 
     @Bean
-    public DataSource dataSourceForMySql() {
+    public DataSource dataSourceForH2() {
         return dataSourceProperties()
                 .initializeDataSourceBuilder()
                 .build();
@@ -55,7 +59,7 @@ public class JpaConfig {
     public EntityManagerFactory entityManagerFactory() {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSourceForMySql());
+        entityManagerFactoryBean.setDataSource(dataSourceForH2());
         entityManagerFactoryBean.setPackagesToScan(
                 "com.example.pettracker.pettracker"
         );
@@ -67,7 +71,7 @@ public class JpaConfig {
         return entityManagerFactoryBean.getObject();
     }
 
-    @Bean(name = "petTrackerSqlTransactionManager")
+    @Bean(name = "petTrackingSqlTransactionManager")
     public JpaTransactionManager transactionManager(EntityManagerFactory petTrackingEntityManager) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(petTrackingEntityManager);
