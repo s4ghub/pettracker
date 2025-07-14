@@ -2,13 +2,13 @@ package com.example.pettracker.pettracker.domainmodels;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-//TODO: Need to add equals and hashCode
+import lombok.EqualsAndHashCode;
 
 /**
  * Single table and no join with other tables needed
  */
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "pet")
 public class Pet {
@@ -16,7 +16,8 @@ public class Pet {
     public enum TrackerType {SMALL, MEDIUM, BIG}
 
     //id of the tracker in the cat or the dog
-    //TODO: Exposed id in the db. Should be modified later
+    //TODO: Exposed id in the db (Not a good practice). Should be modified later
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
