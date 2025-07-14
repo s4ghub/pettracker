@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "f6ee01db-f80f-43fb-a277-297ec1f3056b",
+		"name": "tractive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1750090"
+	},
+	"item": [
+		{
+			"name": "insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"petId\":null,    \r\n    \"ownerId\": 123,\r\n    \"petType\": \"Cat\",\r\n    \"trackerType\":\"biG\",\r\n    \"inZone\": true,\r\n    \"lostTracker\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOutOfZone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos/outofpowersavingzone",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos",
+						"outofpowersavingzone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getbyowners",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos/owners/123/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos",
+						"owners",
+						"123",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/petinfos/lost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"petinfos",
+						"lost"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

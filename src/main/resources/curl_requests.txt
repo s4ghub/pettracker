@@ -1,0 +1,39 @@
+Insert
+======
+curl --location 'http://localhost:8080/api/petinfos' \
+--header 'Content-Type: application/json' \
+--data '{
+        "petId": null,
+        "ownerId": 80,
+        "petType": "CAt",
+        "trackerType": "bIg",
+        "inZone": false,
+        "lostTracker": false
+    }'
+
+
+getAll
+======
+curl --location 'http://localhost:8080/api/petinfos'
+
+getOutOfZone
+============
+curl --location 'http://localhost:8080/api/petinfos/outofpowersavingzone'
+
+update
+======
+curl --location --request PUT 'http://localhost:8080/api/petinfos' \
+--header 'Content-Type: application/json' \
+--data '{
+        "petId": 7,
+        "inZone": true,
+        "lostTracker": null
+    }'
+
+getbyowners
+===========
+curl --location 'http://localhost:8080/api/petinfos/owners/123/pets'
+
+lost
+====
+curl --location 'http://localhost:8080/api/petinfos/lost'
