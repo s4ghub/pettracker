@@ -1,5 +1,6 @@
 package com.example.pettracker.pettracker;
 
+import com.example.pettracker.pettracker.dtos.IOutOfZoneCount;
 import com.example.pettracker.pettracker.dtos.PetDto;
 import com.example.pettracker.pettracker.dtos.UpdateDto;
 
@@ -37,5 +38,19 @@ public class TestHelper {
         dto.setInZone(inZone);
         dto.setLostTracker(lostTracker);
         return dto;
+    }
+
+    public static String iOutOfZoneCountListToString(List<IOutOfZoneCount> outsideCounts) {
+        StringBuilder sb = new StringBuilder();
+        for (IOutOfZoneCount count : outsideCounts) {
+            sb.append(count.getPetType()).append("-").append(count.getTrackerType()).append("-").append(count.getTotalOutside()).append("-");
+        }
+        return sb.toString();
+    }
+
+    public static String petDtoToString(PetDto dto) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(dto.getPetId()).append("-").append(dto.getOwnerId()).append("-").append(dto.getPetType()).append("-").append(dto.getTrackerType()).append("-").append(dto.getInZone()).append("-").append(dto.getLostTracker());
+        return sb.toString();
     }
 }
