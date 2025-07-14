@@ -48,6 +48,7 @@ run main method of src/main/java/com/example/pettracker/pettracker/PettrackerApp
 - PetTrackingService.java is a java interface as the service interface
 - IOutOfZoneCount.java is the dto for pets out of power saving zone aggregation result.
 - Pet is the single entity
+- Initial schema and data is added as the application starts from schema.sql and data.sql.
 
 
 # Assumptions
