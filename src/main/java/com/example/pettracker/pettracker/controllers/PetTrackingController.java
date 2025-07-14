@@ -61,7 +61,6 @@ public class PetTrackingController {
      */
     @PutMapping
     public ResponseEntity<?> updatePetInfo(@Valid @RequestBody UpdateDto dto) {
-        //inputValidator.validate(dto);
         trackingService.modifyPetInfo(dto);
         return ResponseEntity.noContent().build();
     }
@@ -70,8 +69,25 @@ public class PetTrackingController {
      * get all info: Did not use pagination for simplicity
      */
     @GetMapping
-    public ResponseEntity<List<PetDto>> allComponents() {
+    public ResponseEntity<List<PetDto>> allPets() {
         return new ResponseEntity<>(trackingService.getAllPets(), HttpStatus.OK);
+    }
+
+    /**
+     *
+     * Trackers/Pets which are lost
+     */
+    @GetMapping("/lost")
+    public ResponseEntity<List<PetDto>> allLostPets() {
+        return new ResponseEntity<>(trackingService.getAllLostPets(), HttpStatus.OK);
+    }
+
+    /**
+     * All pets for a particular owner
+     */
+    @GetMapping("/owners/{id}/pets")
+    public ResponseEntity<List<PetDto>> allPetsForThisOwner(@PathVariable("id") Integer ownerId) {
+        return new ResponseEntity<>(trackingService.getAllByOwner(ownerId), HttpStatus.OK);
     }
 
     /**

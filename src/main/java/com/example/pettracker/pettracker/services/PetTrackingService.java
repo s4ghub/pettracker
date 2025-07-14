@@ -6,7 +6,7 @@ import com.example.pettracker.pettracker.dtos.UpdateDto;
 
 import java.util.List;
 
-//TODO: define methods
+//Pagination not used for simplicity
 public interface PetTrackingService {
 
     PetDto createPetInfo(PetDto dto);
@@ -18,4 +18,8 @@ public interface PetTrackingService {
     List<PetDto> getAllPets();
 
     List<IOutOfZoneCount> petsOutOfPowerSavingZone();
+
+    List<PetDto> getAllLostPets();
+
+    List<PetDto> getAllByOwner(int ownerId);
 }

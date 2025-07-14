@@ -39,7 +39,7 @@ class PettrackerApplicationIntegrationTests {
     }
 
     @Test //All 5 are outside
-    void shouldReturnAllPetOutside() {
+    void shouldReturnAllPetOutsideAnd_3_ByOwner456() {
         List<PetDto> dtos = trackingService.getAllPets();
         Assertions.assertEquals(5, dtos.size());
         List<IOutOfZoneCount> outOfZones = trackingService.petsOutOfPowerSavingZone();
@@ -47,6 +47,8 @@ class PettrackerApplicationIntegrationTests {
         for (IOutOfZoneCount count : outOfZones) {
             Assertions.assertEquals(1, count.getTotalOutside());
         }
+        dtos = trackingService.getAllByOwner(456);
+        Assertions.assertEquals(3, dtos.size());
     }
 
 	@Test //All 6 are outside. Each group, total is 1, except DOG-BIG total is 2.
@@ -123,6 +125,8 @@ class PettrackerApplicationIntegrationTests {
             Assertions.assertNotEquals("CAT-BIG", count.getPetType() + "-" + count.getTrackerType()); //Lost is not considered in the calculation
             Assertions.assertEquals(1, count.getTotalOutside());
         }
+        dtos = trackingService.getAllLostPets();
+        Assertions.assertEquals(1, dtos.size());
     }
 
 }

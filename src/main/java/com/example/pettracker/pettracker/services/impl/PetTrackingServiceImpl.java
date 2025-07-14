@@ -73,4 +73,22 @@ public class PetTrackingServiceImpl implements PetTrackingService {
     public List<IOutOfZoneCount> petsOutOfPowerSavingZone() {
         return repository.countTotalOutOfPowerSavingZone();
     }
+
+    //TODO: Transactional may not be strictly necessary here
+    @Transactional(value = "petTrackingSqlTransactionManager", readOnly = true)
+    @Override
+    public List<PetDto> getAllLostPets() {
+        List<Pet> lostPetsInfo = repository.getLostOnes();
+        return mapper.entitiesToDtos(lostPetsInfo);
+    }
+
+    //TODO: Transactional may not be strictly necessary here
+    @Transactional(value = "petTrackingSqlTransactionManager", readOnly = true)
+    @Override
+    public List<PetDto> getAllByOwner(int ownerId) {
+        List<Pet> PetsInfoByOwner = repository.findByOwnerId(ownerId);
+        return mapper.entitiesToDtos(PetsInfoByOwner);
+    }
+
+
 }
