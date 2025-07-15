@@ -14,6 +14,7 @@ This application gives 6 endpoints to insert, update and get pet tracker info Da
 - getOutOfZone api returns all the pets which are not lost but outside powersaving zone.
 - getbyowners api returns all the pets owned by a particular owner
 - lost api returns all the lost tracker infos
+- curl --location 'http://localhost:8080/api/petinfos/1'  api returns a petInfo by id
 
 # How to get the application in your system
 - Step 1: Install git
@@ -57,6 +58,7 @@ run main method of src/main/java/com/example/pettracker/pettracker/PettrackerApp
 - It's assumed that the tracker sends update signal only when it's sure that the earlier signal has either succeeded or failed.
 - If the tracker is lost then it is not a candidate for in or out of zone aggregation.
 - No delete api is provided. But if required it won't be an issue to add.
+- logging and tracing is not implemented to keep the code without much clutter.
 
 
 
