@@ -3,7 +3,7 @@ This application returns the number of pets outside the power saving zone and ha
 
 # Curl and Postman
 
-This application gives 6 endpoints to insert, update and get pet tracker info Data.
+This application gives 6 endpoints (actually 7 endpoints, get a single pet endpoint is missing in the following files) to insert, update and get pet tracker info Data.
 - The example curl requests for testing are provided in src/main/resources/curl_requests.txt
 - The example postman requests for testing are there in src/main/resources/tractive.postman_collection.json
 
